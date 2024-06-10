@@ -2,7 +2,7 @@ import { Button } from "../../../components";
 import { openModalById } from "../../../utils";
 import { ModalNewPartner } from "./components";
 
-export const Partiners = () => {
+export const Partners = () => {
   return (
     <>
       <div className="container mx-auto py-4 justify-between flex items-center">

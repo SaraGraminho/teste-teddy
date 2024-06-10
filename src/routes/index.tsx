@@ -1,5 +1,5 @@
 import { Navigate, createBrowserRouter } from "react-router-dom";
-import { Companies, Home, Partiners, SignIn, UserOutlet } from "../pages";
+import { Companies, Home, Partners, SignIn, UserOutlet } from "../pages";
 
 export const router = createBrowserRouter([
   {
@@ -24,7 +24,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/user/partners",
-        element: <Partiners />,
+        element: <Partners />,
       },
     ],
   },
