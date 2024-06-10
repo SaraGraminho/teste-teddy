@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { Header } from "../../components";
 import { useEffect } from "react";

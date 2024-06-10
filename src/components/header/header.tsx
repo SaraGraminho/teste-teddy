@@ -21,10 +21,10 @@ export const Header = () => {
               <a href="#">Início</a>
             </li>
             <li>
-              <a href="#">Empresas</a>
+              <a href="/user/companies">Empresas</a>
             </li>
             <li>
-              <a href="#">Parceiros</a>
+              <a href="/user/partners">Parceiros</a>
             </li>
             <li>
               <button onClick={logout}>Sair</button>
