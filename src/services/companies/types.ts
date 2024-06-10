@@ -11,3 +11,9 @@ export type PostCompany = {
   collaboratorsCount: number;
   isActive: boolean;
 };
+
+export type PutCompany = {
+  companyName: string;
+  collaboratorsCount: number;
+  isActive: boolean;
+};

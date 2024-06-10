@@ -22,3 +22,11 @@ export const postCompany = async (company: T.PostCompany) => {
   );
   return data;
 };
+
+export const putCompany = async (id: string, company: T.PutCompany) => {
+  const { data } = await axios.put(
+    `https://655cf25525b76d9884fe3153.mockapi.io/v1/external-companies/${id}`,
+    company
+  );
+  return data;
+};
