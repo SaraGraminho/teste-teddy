@@ -1,5 +1,5 @@
 import { storage } from "../../utils";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Header = () => {
   const navigate = useNavigate();
@@ -18,13 +18,13 @@ export const Header = () => {
         <nav className="ml-auto flex flex-row">
           <ul className="flex gap-4">
             <li>
-              <a href="/user/home">Início</a>
+              <Link to="/user/home">Início</Link>
             </li>
             <li>
-              <a href="/user/companies">Empresas</a>
+              <Link to="/user/companies">Empresas</Link>
             </li>
             <li>
-              <a href="/user/partners">Parceiros</a>
+              <Link to="/user/partners">Parceiros</Link>
             </li>
             <li>
               <button onClick={logout}>Sair</button>
