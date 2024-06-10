@@ -9,7 +9,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export const Partners = () => {
-  const itemsPerPage = 9;
+  const itemsPerPage = 12;
   const navigate = useNavigate();
   const location = useLocation();
   const [currentPage, setCurrentPage] = useState(1);
