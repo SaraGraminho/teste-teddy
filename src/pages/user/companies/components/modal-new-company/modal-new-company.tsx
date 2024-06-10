@@ -1,11 +1,28 @@
+import { useMutation } from "@tanstack/react-query";
 import { Modal, Button, Input } from "../../../../../components";
+import { postCompany } from "../../../../../services";
 import { closeModalById } from "../../../../../utils";
 import { useState } from "react";
+import type * as T from "./types";
+import { toast } from "react-toastify";
 
-export const ModalNewCompany = () => {
+export const ModalNewCompany = ({ refetch }: T.Props) => {
   const [companyName, setCompanyName] = useState("");
   const [collaboratorsNumber, setCollaboratorsNumber] = useState("");
   const [companyStatus, setCompanyStatus] = useState(false);
+
+  const { mutate, isPending } = useMutation({
+    mutationKey: ["post-company"],
+    mutationFn: (data: T.PostCompany) => postCompany(data),
+    onSuccess: () => {
+      toast.success("Empresa criada com sucesso.");
+      refetch();
+      closeModalById("new-company");
+    },
+    onError: () => {
+      toast.error("Erro ao criar a empresa.");
+    },
+  });
 
   const cleanDataAndCloseModal = () => {
     setCompanyName("");
@@ -19,7 +36,11 @@ export const ModalNewCompany = () => {
       return alert("Preencha todos os campos.");
     }
 
-    alert("Função para criar uma nova empresa");
+    mutate({
+      collaboratorsCount: Number(collaboratorsNumber),
+      companyName,
+      isActive: companyStatus,
+    });
   };
 
   return (
@@ -58,11 +79,18 @@ export const ModalNewCompany = () => {
             type="button"
             variant="primary-outline"
             onClick={cleanDataAndCloseModal}
+            disabled={isPending}
           >
             Cancelar
           </Button>
 
-          <Button type="button" variant="primary" onClick={onSubmit}>
+          <Button
+            isLoading={isPending}
+            disabled={isPending}
+            type="button"
+            variant="primary"
+            onClick={onSubmit}
+          >
             Confirmar
           </Button>
         </div>

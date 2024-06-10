@@ -14,3 +14,11 @@ export const deleteCompany = async (id: string) => {
   );
   return data;
 };
+
+export const postCompany = async (company: T.PostCompany) => {
+  const { data } = await axios.post(
+    "https://655cf25525b76d9884fe3153.mockapi.io/v1/external-companies",
+    company
+  );
+  return data;
+};

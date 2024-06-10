@@ -5,3 +5,9 @@ export type GetCompaniesResponse = {
   createdAt: string;
   id: string;
 }[];
+
+export type PostCompany = {
+  companyName: string;
+  collaboratorsCount: number;
+  isActive: boolean;
+};

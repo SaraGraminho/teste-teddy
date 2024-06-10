@@ -30,7 +30,7 @@ export const Companies = () => {
         ))}
       </div>
 
-      <ModalNewCompany />
+      <ModalNewCompany refetch={refetch} />
     </>
   ) : (
     <div className="flex h-[calc(100vh-4rem)] items-center justify-center">
