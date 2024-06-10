@@ -6,7 +6,7 @@ import { ModalNewCompany } from "./components";
 import { CompanyCard } from "./components/company-card";
 
 export const Companies = () => {
-  const { data, isLoading, isRefetching } = useQuery({
+  const { data, isLoading, isRefetching, refetch } = useQuery({
     queryKey: ["get-companies"],
     queryFn: () => getCompanies(),
   });
@@ -26,7 +26,7 @@ export const Companies = () => {
 
       <div className="container mx-auto grid grid-cols-4 gap-4 pb-4">
         {data.map((company) => (
-          <CompanyCard key={company.id} company={company} />
+          <CompanyCard key={company.id} company={company} refetch={refetch} />
         ))}
       </div>
 

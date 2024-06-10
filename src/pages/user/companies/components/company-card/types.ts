@@ -6,4 +6,5 @@ export type Props = {
     createdAt: string;
     id: string;
   };
+  refetch: () => void;
 };

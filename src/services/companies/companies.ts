@@ -7,3 +7,10 @@ export const getCompanies = async () => {
   );
   return data;
 };
+
+export const deleteCompany = async (id: string) => {
+  const { data } = await axios.delete(
+    `https://655cf25525b76d9884fe3153.mockapi.io/v1/external-companies/${id}`
+  );
+  return data;
+};
