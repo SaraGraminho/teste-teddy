@@ -1,7 +1,22 @@
+import { Button } from "../../../components";
+import { openModalById } from "../../../utils";
+import { ModalNewPartner } from "./components";
+
 export const Partiners = () => {
   return (
-    <div className="h-[calc(100vh-4rem)] flex justify-center items-center">
-      <h1 className="text-2xl font-semibold">Parceiros!</h1>
-    </div>
+    <>
+      <div className="container mx-auto py-4 justify-between flex items-center">
+        <h1 className="font-semibold text-2xl">Parceiros</h1>
+        <Button
+          type="button"
+          variant="success"
+          onClick={() => openModalById(`new-partner`)}
+        >
+          Novo parceiro
+        </Button>
+      </div>
+
+      <ModalNewPartner />
+    </>
   );
 };
