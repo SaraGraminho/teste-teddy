@@ -1,12 +1,29 @@
+import { useMutation } from "@tanstack/react-query";
 import { Modal, Button, Input } from "../../../../../components";
 import { closeModalById } from "../../../../../utils";
 import { useState } from "react";
+import { postPartner } from "../../../../../services";
+import type * as T from "./types";
+import { toast } from "react-toastify";
 
-export const ModalNewPartner = () => {
+export const ModalNewPartner = ({ refetch }: T.Props) => {
   const [partnerName, setPartnerName] = useState("");
   const [partnerDescription, setPartnerDescription] = useState("");
   const [partnerRepository, setPartnerRepository] = useState("");
   const [partnerUrlDoc, setPartnerUrlDoc] = useState("");
+
+  const { mutate, isPending } = useMutation({
+    mutationKey: ["post-partner"],
+    mutationFn: (data: T.PostPartner) => postPartner(data),
+    onSuccess: () => {
+      toast.success("Parceiro criado com sucesso.");
+      refetch();
+      closeModalById("new-partner");
+    },
+    onError: () => {
+      toast.error("Erro ao criar o parceiro.");
+    },
+  });
 
   const cleanDataAndCloseModal = () => {
     setPartnerName("");
@@ -26,11 +43,16 @@ export const ModalNewPartner = () => {
       return alert("Preencha todos os campos.");
     }
 
-    alert("Função para criar novo parceiro");
+    mutate({
+      name: partnerName,
+      description: partnerDescription,
+      repositoryGit: partnerRepository,
+      urlDoc: partnerUrlDoc,
+    });
   };
 
   return (
-    <Modal title="Novo Parceiro" id={`new-partner`}>
+    <Modal title="Novo parceiro" id={`new-partner`}>
       <div className="flex w-auto flex-col gap-4">
         <div className="flex flex-col gap-2">
           <Input
@@ -56,6 +78,7 @@ export const ModalNewPartner = () => {
             type="text"
             placeholder="Digite o repositório do Git"
           />
+
           <Input
             label="URL do documento:"
             value={partnerUrlDoc}
@@ -67,6 +90,7 @@ export const ModalNewPartner = () => {
 
         <div className="flex items-center justify-end gap-4">
           <Button
+            disabled={isPending}
             type="button"
             variant="primary-outline"
             onClick={cleanDataAndCloseModal}
@@ -74,7 +98,13 @@ export const ModalNewPartner = () => {
             Cancelar
           </Button>
 
-          <Button type="button" variant="primary" onClick={onSubmit}>
+          <Button
+            isLoading={isPending}
+            disabled={isPending}
+            type="button"
+            variant="primary"
+            onClick={onSubmit}
+          >
             Confirmar
           </Button>
         </div>
