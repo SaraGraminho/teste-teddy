@@ -1,6 +1,6 @@
 import { Button } from "../../../components";
 import { openModalById } from "../../../utils";
-import { ModalNewCompanies } from "./components";
+import { ModalNewCompany } from "./components";
 
 export const Companies = () => {
   return (
@@ -10,12 +10,13 @@ export const Companies = () => {
         <Button
           type="button"
           variant="success"
-          onClick={() => openModalById(`new-companies`)}
+          onClick={() => openModalById(`new-company`)}
         >
           Nova empresa
         </Button>
       </div>
-      <ModalNewCompanies />
+
+      <ModalNewCompany />
     </>
   );
 };

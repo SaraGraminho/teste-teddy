@@ -8,7 +8,6 @@ export const SignIn = () => {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
   const [stillConnected, setStillConnected] = useState(false);
-  console.log(stillConnected);
 
   const onSubmit = () => {
     if (!user || !password) return alert("Preencha todos os campos.");
