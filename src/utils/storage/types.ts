@@ -1,1 +1,3 @@
-export enum StorageEnum {}
+export enum StorageEnum {
+  User,
+}

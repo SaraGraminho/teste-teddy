@@ -1,6 +1,6 @@
-import type * as T from './types';
+import type * as T from "./types";
 
-const PREFIX = '@app-serido-golf';
+const PREFIX = "@app-teste-teddy";
 
 const get = <T = string>(name: T.StorageEnum) => {
   const item = sessionStorage.getItem(`${PREFIX}:${name}`);

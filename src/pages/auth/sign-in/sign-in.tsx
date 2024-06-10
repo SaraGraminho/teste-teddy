@@ -1,17 +1,38 @@
 import { Button, Input } from "../../../components";
+import { useState } from "react";
+import { storage } from "../../../utils";
 
 export const SignIn = () => {
+  const [user, setUser] = useState("");
+  const [password, setPassword] = useState("");
+
+  const onSubmit = () => {
+    if (!user || !password) return alert("Preencha todos os campos.");
+    storage.session.set(storage.enum.User, user);
+  };
+
   return (
     <main className="bg-primary h-screen flex justify-center items-center">
-      <div className="bg-white w-[360px] h-96 rounded-md">
-        <h1>Faça o seu login</h1>
-        <form>
-          <Input type="email" placeholder="E-mail"></Input>
-          <Input type="senha" placeholder="Senha"></Input>
-          <Button size="full" type="submit" variant="primary">
-            Acessar
-          </Button>
-        </form>
+      <div className="bg-white w-[360px] rounded-md p-4 flex flex-col gap-4">
+        <h1 className="font-bold text-2xl justify-center flex">LOGIN</h1>
+
+        <Input
+          type="text"
+          value={user}
+          onChange={(e) => setUser(e.target.value)}
+          placeholder="Usuário"
+        />
+
+        <Input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Senha"
+        />
+
+        <Button size="full" onClick={onSubmit} variant="primary">
+          Acessar
+        </Button>
       </div>
     </main>
   );
