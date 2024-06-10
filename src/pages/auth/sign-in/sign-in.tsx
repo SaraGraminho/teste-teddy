@@ -7,10 +7,18 @@ export const SignIn = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
+  const [stillConnected, setStillConnected] = useState(false);
+  console.log(stillConnected);
 
   const onSubmit = () => {
     if (!user || !password) return alert("Preencha todos os campos.");
-    storage.session.set(storage.enum.User, user);
+
+    if (stillConnected) {
+      storage.local.set(storage.enum.User, user);
+    } else {
+      storage.session.set(storage.enum.User, user);
+    }
+
     navigate("/user/home");
   };
 
@@ -32,6 +40,16 @@ export const SignIn = () => {
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Senha"
         />
+
+        <label className="label cursor-pointer">
+          <span className="label-text">Manter conectado</span>
+          <input
+            type="checkbox"
+            onChange={(e) => setStillConnected(e.target.checked)}
+            defaultChecked={stillConnected}
+            className="checkbox checkbox-primary"
+          />
+        </label>
 
         <Button size="full" onClick={onSubmit} variant="primary">
           Acessar
