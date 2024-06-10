@@ -1,5 +1,5 @@
 import { Navigate, createBrowserRouter } from "react-router-dom";
-import { SignIn } from "../pages";
+import { Home, SignIn } from "../pages";
 
 export const router = createBrowserRouter([
   {
@@ -9,6 +9,10 @@ export const router = createBrowserRouter([
   {
     path: "/auth/sign-in",
     element: <SignIn />,
+  },
+  {
+    path: "/user/home",
+    element: <Home />,
   },
   {
     path: "*",

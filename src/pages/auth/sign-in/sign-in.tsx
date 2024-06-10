@@ -1,14 +1,17 @@
 import { Button, Input } from "../../../components";
 import { useState } from "react";
 import { storage } from "../../../utils";
+import { useNavigate } from "react-router-dom";
 
 export const SignIn = () => {
+  const navigate = useNavigate();
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
 
   const onSubmit = () => {
     if (!user || !password) return alert("Preencha todos os campos.");
     storage.session.set(storage.enum.User, user);
+    navigate("/user/home");
   };
 
   return (
