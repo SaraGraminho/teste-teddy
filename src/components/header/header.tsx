@@ -18,7 +18,7 @@ export const Header = () => {
         <nav className="ml-auto flex flex-row">
           <ul className="flex gap-4">
             <li>
-              <a href="#">Início</a>
+              <a href="/user/home">Início</a>
             </li>
             <li>
               <a href="/user/companies">Empresas</a>
